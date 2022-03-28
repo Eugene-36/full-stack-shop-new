@@ -1,31 +1,25 @@
-import React from 'react';
-// import { Switch, Route, Redirect } from 'react-router-dom';
-// import DevicePage from '../pages/DevicePage';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  useRouteMatch,
-} from 'react-router-dom';
-import { authRoutes, publicRoutes } from '../routes.js';
+import React, { useContext } from 'react';
 
-console.log('publicRoutes', publicRoutes);
+import { Routes, Route } from 'react-router-dom';
+import Shop from '../pages/Shop.js';
+import { authRoutes, publicRoutes } from '../routes.js';
+import { Context } from '../index.js';
 
 export default function AppRouter() {
-  const isAuth = false;
+  const { user } = useContext(Context);
+  console.log('user', user);
   return (
     <Routes>
-      {isAuth &&
+      {user.isAuth &&
         authRoutes.map(({ path, Component }) => {
           return <Route key={path} path={path} element={<Component />} exact />;
         })}
 
       {publicRoutes.map(({ path, Component }) => {
-        console.log('path', path);
-        console.log('Component', Component);
         return <Route key={path} path={path} element={<Component />} exact />;
       })}
+
+      <Route path='*' element={<Shop />} />
     </Routes>
   );
 }
