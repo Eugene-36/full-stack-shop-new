@@ -7,7 +7,7 @@ import { Context } from '../index.js';
 
 export default function AppRouter() {
   const { user } = useContext(Context);
-  console.log('user', user);
+  console.log('user', user.isAuth);
   return (
     <Routes>
       {user.isAuth &&

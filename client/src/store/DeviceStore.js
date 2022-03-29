@@ -12,6 +12,8 @@ export default class DeviceStore {
     this._brands = [
       { id: 1, name: 'Samsung' },
       { id: 2, name: 'Apple' },
+      { id: 3, name: 'Apple' },
+      { id: 4, name: 'Apple' },
     ];
 
     this._device = [
@@ -23,21 +25,35 @@ export default class DeviceStore {
         img: `https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.imgmobile.com%2F&psig=AOvVaw3zYQwEtbh0xWK5g15Cfv19&ust=1648577706831000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiTiNe06fYCFQAAAAAdAAAAABAD`,
       },
       {
-        id: 1,
+        id: 2,
         name: 'Iphone 12 pro',
         price: 25000,
         rating: 5,
         img: `https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.imgmobile.com%2F&psig=AOvVaw3zYQwEtbh0xWK5g15Cfv19&ust=1648577706831000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiTiNe06fYCFQAAAAAdAAAAABAD`,
       },
       {
-        id: 1,
+        id: 3,
         name: 'Iphone 12 pro',
         price: 25000,
         rating: 5,
         img: `https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.imgmobile.com%2F&psig=AOvVaw3zYQwEtbh0xWK5g15Cfv19&ust=1648577706831000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiTiNe06fYCFQAAAAAdAAAAABAD`,
       },
       {
-        id: 1,
+        id: 4,
+        name: 'Iphone 12 pro',
+        price: 25000,
+        rating: 5,
+        img: `https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.imgmobile.com%2F&psig=AOvVaw3zYQwEtbh0xWK5g15Cfv19&ust=1648577706831000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiTiNe06fYCFQAAAAAdAAAAABAD`,
+      },
+      {
+        id: 5,
+        name: 'Iphone 12 pro',
+        price: 25000,
+        rating: 5,
+        img: `https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.imgmobile.com%2F&psig=AOvVaw3zYQwEtbh0xWK5g15Cfv19&ust=1648577706831000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiTiNe06fYCFQAAAAAdAAAAABAD`,
+      },
+      {
+        id: 6,
         name: 'Iphone 12 pro',
         price: 25000,
         rating: 5,
@@ -45,6 +61,8 @@ export default class DeviceStore {
       },
     ];
     this._selectedType = {};
+    this._selectedBrand = {};
+
     makeAutoObservable(this);
   }
 
@@ -62,6 +80,10 @@ export default class DeviceStore {
   setSelectedType(type) {
     this._selectedType = type;
   }
+
+  setSelectedBrand(brand) {
+    this._selectedBrand = brand;
+  }
   // Геттеры чтобы получать данные из нашего состояния
 
   get types() {
@@ -77,5 +99,9 @@ export default class DeviceStore {
 
   get selectedType() {
     return this._selectedType;
+  }
+
+  get selectedBrand() {
+    return this._selectedBrand;
   }
 }
