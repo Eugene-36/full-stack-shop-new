@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { fetchTypes } from '../../http//deviceAPI';
+import { createDevice, fetchTypes } from '../../http//deviceAPI';
 import { fetchBrands } from '../../http//deviceAPI';
 
 import { Dropdown, Col } from 'react-bootstrap';
@@ -38,7 +38,15 @@ const CreateDevice = observer(({ show, onHide }) => {
   };
 
   const addDevice = () => {
-    console.log('info', info);
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('price', `${price}`);
+    formData.append('img', file);
+    formData.append('brandId', device.selectedBrand.id);
+    formData.append('typeId', device.selectedType.id);
+    formData.append('info', JSON.stringify(info));
+
+    createDevice(formData).then((data) => onHide());
   };
   const selectFile = (e) => {
     setFile(e.target.files[0]);
