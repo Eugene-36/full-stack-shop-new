@@ -8,10 +8,12 @@ const Pages = observer(() => {
   const pageCount = Math.ceil(device.totalCount / device.limit);
   const pages = [];
 
+  //.replaceAll('(current)', '')
   for (let i = 0; i < pageCount; i++) {
     pages.push(i + 1);
   }
 
+  console.log('pages', pages);
   return (
     <Pagination className='mt-5'>
       {pages.map((page) => (

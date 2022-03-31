@@ -6,6 +6,9 @@ import { createType } from '../../http/deviceAPI';
 
 const CreateType = ({ show, onHide }) => {
   const [value, setValue] = useState([]);
+  const element = document.getElementsByClassName('.btn-close');
+
+  console.log('element', element);
 
   const addType = () => {
     createType({ name: value }).then((data) => {
