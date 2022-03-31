@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Image } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -7,28 +7,27 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import bigStar from '../assests/big-star.png';
 
-export default function DevicePage() {
-  const device = {
-    id: 5,
-    name: 'Iphone 12 pro',
-    price: 25000,
-    rating: 5,
-    img: `https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.imgmobile.com%2F&psig=AOvVaw3zYQwEtbh0xWK5g15Cfv19&ust=1648577706831000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiTiNe06fYCFQAAAAAdAAAAABAD`,
-  };
+import { useParams } from 'react-router-dom';
+import { fetchOneDevice } from '../http/deviceAPI';
 
-  const description = [
-    { id: 1, title: 'Оперативная память', description: '5 гб' },
-    { id: 2, title: 'Камера', description: '8 мп' },
-    { id: 3, title: 'Процессор', description: 'Пентиум 5' },
-    { id: 4, title: 'Кол-во ядер', description: '2' },
-    { id: 5, title: 'Аккумулятор', description: '4800' },
-  ];
+export default function DevicePage() {
+  const [device, setDevice] = useState({ info: [] });
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetchOneDevice(id).then((data) => setDevice(data));
+  });
 
   return (
     <Container className='mt-3'>
       <Row>
         <Col md={4}>
-          <Image src={device.img} width={300} height={300}></Image>
+          <Image
+            src={process.env.REACT_APP_API_URL + device.img}
+            width={300}
+            height={300}
+          ></Image>
         </Col>
         <Col md={4}>
           <Row className='d-flex flex-column align-items-center'>
@@ -65,7 +64,7 @@ export default function DevicePage() {
       </Row>
       <Row className='d-flex flex-column m-3'>
         <h1>Характеристики</h1>
-        {description.map((info, index) => (
+        {device.info.map((info, index) => (
           <Row
             key={info.id}
             style={{
